@@ -23,11 +23,16 @@ import com.example.roomtugas.CreateProduct.ProductCreateDialogFragment;
 import com.example.roomtugas.CreateProduct.ProductCreateListener;
 import com.example.roomtugas.R;
 import com.example.roomtugas.repository.ProductRepository;
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class ProductListActivity extends AppCompatActivity implements ProductCreateListener {
 
@@ -42,6 +47,13 @@ public class ProductListActivity extends AppCompatActivity implements ProductCre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+        Stetho.initializeWithDefaults(this);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .addNetworkInterceptor(new StethoInterceptor())
+                .build();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Logger.addLogAdapter(new AndroidLogAdapter());
