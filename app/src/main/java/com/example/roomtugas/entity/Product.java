@@ -6,9 +6,6 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 
-/**
- * Created by husaynhakeem on 6/12/17.
- */
 
 @Entity (tableName = "tb_product")
 public class Product implements Serializable {

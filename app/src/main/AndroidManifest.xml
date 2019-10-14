@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.example.roomtugas.MainActivity">
-
         </activity>
         <activity android:name="com.example.roomtugas.ShowProductList.ProductListActivity">
             <intent-filter>
